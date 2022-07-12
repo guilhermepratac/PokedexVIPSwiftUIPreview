@@ -5,6 +5,7 @@
 //  Created by Guilherme Prata Costa on 12/07/22.
 //
 import UIKit
+#if canImport(SwiftUI)
 import SwiftUI
 
 extension UIView {
@@ -45,3 +46,4 @@ extension UIViewController {
         Preview(viewController: self)
     }
 }
+#endif

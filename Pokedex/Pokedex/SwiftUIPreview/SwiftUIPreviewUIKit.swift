@@ -7,10 +7,11 @@
 
 #if DEBUG
 import SwiftUI
+import Foundation
 
 struct SwiftUIPreviewUIKit_Preview: PreviewProvider {
     static var previews: some View {
-        HomeViewController().showPreview()
+        HomeFactory.make(with: .init()).showPreview()
     }
 }
 #endif
