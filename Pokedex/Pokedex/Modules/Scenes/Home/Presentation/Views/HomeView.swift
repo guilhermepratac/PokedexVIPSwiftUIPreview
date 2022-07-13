@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol HomeViewProtocol: UIView {
     func show(viewModel: Home.ViewModel)
@@ -15,15 +16,15 @@ class HomeView: UIView {
 
     var titleHeaderView: UIView = {
         let view = UIView()
-        view.backgroundColor = .blue
-        view.translatesAutoresizingMaskIntoConstraints = false
 
         return view
     }()
 
-    lazy var title: UILabel = {
+    lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Pokedex"
+        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.textColor = .black
 
         return label
     }()
@@ -42,16 +43,21 @@ extension HomeView: ViewCode {
     func setupComponents() {
         backgroundColor = .white
         addSubview(titleHeaderView)
-        //titleHeaderView.addSubview(title)
+        titleHeaderView.addSubview(titleLabel)
     }
 
     func setupConstraints() {
-        NSLayoutConstraint.activate([
-            titleHeaderView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            titleHeaderView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            titleHeaderView.topAnchor.constraint(equalTo: topAnchor),
-            titleHeaderView.heightAnchor.constraint(equalToConstant: 160)
-        ])
+        titleHeaderView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.height.equalTo(90)
+        }
+
+        titleLabel.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(16)
+        }
+
     }
 
 
